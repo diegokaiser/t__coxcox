@@ -1,5 +1,5 @@
 import { Header } from '@/components/molecules';
-import { ReservationForm } from '@/components/organisms';
+// import { ReservationForm } from '@/components/organisms';
 
 export default function Home() {
   return (
@@ -8,7 +8,7 @@ export default function Home() {
         <div className="w-4/12">
           <Header />
           <div className="flex justify-center w-full">
-            <ReservationForm />
+            {/* <ReservationForm /> */}
           </div>
         </div>
       </div>
