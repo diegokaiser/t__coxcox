@@ -1,7 +1,0 @@
-select,
-input {
-  &:focus,
-  &:focus-visible {
-    outline: none;
-  }
-}
