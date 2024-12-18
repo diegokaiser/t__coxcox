@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('styles/reset.css');
-@import url('styles/app.css');
+@import url('reset.css');
+@import url('app.css');
 @import "primereact/resources/themes/lara-light-cyan/theme.css"

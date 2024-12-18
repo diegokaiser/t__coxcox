@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@million/lint": "^1.0.14",
     "@phosphor-icons/react": "^2.1.7",
     "dayjs": "^1.11.13",
     "firebase": "^11.1.0",
