@@ -1,0 +1,74 @@
+.btn {
+  align-items: center;
+  border-radius: 8px;
+  color: white;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 500;
+  justify-content: center;
+  padding: 0.562rem 1rem;
+
+  &.btn-primary {
+    background-color: #2196f3;
+    border: 2px solid #2196f3;
+  }
+
+  &.btn-secondary {
+    background-color: #39465f;
+    border: 2px solid #39465f;
+  }
+
+  &.btn-danger {
+    background-color: #f44336;
+    border: 2px solid #f44336;
+    &:disabled {
+      background-color: #ef9a9a;
+      border: 2px solid #ef9a9a;
+      color: white;
+    }
+  }
+
+  &.btn-success {
+    background-color: #8bc34a;
+    border: 2px solid #8bc34a;
+  }
+
+  &.btn-info {
+    border: 1px solid rgb(219, 224, 229);
+    color: #39465f;
+    svg {
+      margin-left: 0;
+    }
+  }
+
+  &.svg-no-ml {
+    svg {
+      margin-left: 0;
+    }
+  }
+
+  svg {
+    margin-left: 14px;
+  }
+
+  &:disabled {
+    background-color: transparent;
+    border: 2px solid #bdbdbd;
+    color: #bdbdbd;
+    cursor: not-allowed;
+  }
+}
+
+.no-select {
+  -webkit-appearance: none;
+}
+
+.no-user-select {
+  user-select: none;
+  pointer-events: none;
+}
+
+.p-datepicker-month.p-link {
+  margin-right: 21px;
+  text-transform: capitalize;
+}
