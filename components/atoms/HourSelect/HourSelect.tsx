@@ -1,7 +1,7 @@
 'use client';
 
 import { ClockAfternoon } from '@phosphor-icons/react';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 interface Props {
   className?: string;

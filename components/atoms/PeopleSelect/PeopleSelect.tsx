@@ -17,7 +17,10 @@ const PeopleSelect = ({ className }: Props) => {
 
   return (
     <div className={`${className} relative`}>
-      <div className="flex gap-3 items-center p-4 text-sm">
+      <div
+        className="flex gap-3 items-center p-4 text-sm"
+        onClick={() => handleSelect}
+      >
         {people == 0 ? (
           <>
             <UsersThree size={28} /> Seleccionar
