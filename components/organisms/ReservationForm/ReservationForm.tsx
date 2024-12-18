@@ -16,7 +16,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/es';
 import apis from '@/libs/apis';
 import reservations from '@/libs/apis/reservations';
-import { horasDelDia } from '@/contanst';
+import { horasDelDia } from '@/constants';
 
 addLocale('es', {
   firstDayOfWeek: 1,
