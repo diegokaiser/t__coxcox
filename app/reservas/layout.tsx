@@ -1,6 +1,6 @@
 import { Header } from '@/components/molecules';
 
-export default function RootLayout({
+export default function ReservasLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
