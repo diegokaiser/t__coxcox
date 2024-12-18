@@ -1,15 +1,16 @@
 import { Header } from '@/components/molecules';
-import { ReservationForm } from '@/components/organisms';
 
-export default function Home() {
+export default function RootLayout({
+  children
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <div className="flex justify-center">
       <div className="container flex justify-center">
         <div className="w-4/12">
           <Header />
-          <div className="flex justify-center w-full">
-            <ReservationForm />
-          </div>
+          <div className="flex justify-center w-full">{children}</div>
         </div>
       </div>
     </div>
