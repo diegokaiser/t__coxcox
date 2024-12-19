@@ -99,7 +99,7 @@ const CustomerReservationEmail = async (reservation: Reserva) => {
                                                 <td><table role="presentation" border="0" cellpadding="8" cellspacing="0" align="center" style="border:1px solid #000000;border-radius:4px;background-color:#ffffff">
                                                     <tbody>
                                                       <tr>
-                                                        <td style="text-align:center"><a href="https://coxcox.vercel.app/reservas/${reservation.key}/detalles"> <span style="color:#000000;font-size:16px;line-height:24px"> Cancelar mi reserva </span> </a></td>
+                                                        <td style="text-align:center"><a href="https://elpastorreservas.vercel.app/reservas/${reservation.key}/detalles"> <span style="color:#000000;font-size:16px;line-height:24px"> Cancelar mi reserva </span> </a></td>
                                                       </tr>
                                                     </tbody>
                                                   </table></td>

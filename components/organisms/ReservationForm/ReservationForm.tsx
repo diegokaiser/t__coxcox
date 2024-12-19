@@ -101,6 +101,18 @@ const ReservationForm = () => {
     setTabActive('date');
   }, []);
 
+  const handleBigParty = () => {
+    router.push(
+      'https://api.whatsapp.com/send?phone=34606970757&text=Hola!%0AQuisiera%20realizar%20una%20reserva%20para%20un%20grupo%20m%C3%A1s%20grande'
+    );
+  };
+
+  const handleBigEvent = () => {
+    router.push(
+      'https://api.whatsapp.com/send?phone=34606970757&text=Hola!%0AQuisiera%20celebrar%20mi%20evento%20en%20el%20Restaurante%20Mexicano%20El%20Pastor'
+    );
+  };
+
   const handleSelectDate = useCallback((value: Nullable<Date>) => {
     if (value) {
       const formattedDate = dayjs(value).format('MM/DD/YYYY');
@@ -200,7 +212,7 @@ const ReservationForm = () => {
           {['people', 'date', 'hour'].map((step, idx) => (
             <div key={step} className="w-4/12">
               <div
-                className={`rounded cursor-pointer flex gap-3 items-center m-2 px-4 py-3 text-sm ${tabActive == step && 'bg-gray-100'}`}
+                className={`rounded cursor-pointer flex flex-col sm:flex-row gap-3 items-center m-2 px-4 py-3 text-sm ${tabActive == step && 'bg-gray-100'}`}
                 onClick={() => handleTabActive(step)}
               >
                 {idx === 0 && (
@@ -231,49 +243,49 @@ const ReservationForm = () => {
             <div className="w-full">
               <div className="peopleSelector flex flex-wrap mb-4">
                 <button
-                  className="w-3/12"
+                  className="w-4/12 sm:w-3/12"
                   onClick={() => handleSelectPeople('1')}
                 >
                   <div className="border rounded m-2 p-3">1</div>
                 </button>
                 <button
-                  className="w-3/12"
+                  className="w-4/12 sm:w-3/12"
                   onClick={() => handleSelectPeople('2')}
                 >
                   <div className="border rounded m-2 p-3">2</div>
                 </button>
                 <button
-                  className="w-3/12"
+                  className="w-4/12 sm:w-3/12"
                   onClick={() => handleSelectPeople('3')}
                 >
                   <div className="border rounded m-2 p-3">3</div>
                 </button>
                 <button
-                  className="w-3/12"
+                  className="w-4/12 sm:w-3/12"
                   onClick={() => handleSelectPeople('4')}
                 >
                   <div className="border rounded m-2 p-3">4</div>
                 </button>
                 <button
-                  className="w-3/12"
+                  className="w-4/12 sm:w-3/12"
                   onClick={() => handleSelectPeople('5')}
                 >
                   <div className="border rounded m-2 p-3">5</div>
                 </button>
                 <button
-                  className="w-3/12"
+                  className="w-4/12 sm:w-3/12"
                   onClick={() => handleSelectPeople('6')}
                 >
                   <div className="border rounded m-2 p-3">6</div>
                 </button>
               </div>
-              <div className="flex flex-wrap mb-4">
-                <button className="w-6/12">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap mb-4">
+                <button className="w-full sm:w-6/12" onClick={handleBigParty}>
                   <div className="border rounded m-2 p-3">
                     Tengo un grupo mas grande
                   </div>
                 </button>
-                <button className="w-6/12">
+                <button className="w-full sm:w-6/12" onClick={handleBigEvent}>
                   <div className="border rounded m-2 p-3">Quiero un evento</div>
                 </button>
               </div>
@@ -308,7 +320,7 @@ const ReservationForm = () => {
                 {horasDelDia.map((hour) => (
                   <button
                     key={hour}
-                    className={`w-3/12 ${availableHours.includes(hour) ? 'cursor-pointer' : 'cursor-not-allowed'}`}
+                    className={`w-4/12 sm:w-3/12 ${availableHours.includes(hour) ? 'cursor-pointer' : 'cursor-not-allowed'}`}
                     onClick={() =>
                       availableHours.includes(hour) && handleSelectHour(hour)
                     }
@@ -331,7 +343,7 @@ const ReservationForm = () => {
             <div className="w-full">
               <div className="userForm flex flex-col my-4">
                 <div className="flex flex-wrap mb-4">
-                  <div className="mb-3 w-6/12">
+                  <div className="mb-3 w-full sm:w-6/12">
                     <div className="flex gap-3 mx-2">
                       {['Sr.', 'Sra.', 'Otro'].map((title) => (
                         <div key={title} className="mr-2">
@@ -354,10 +366,10 @@ const ReservationForm = () => {
                       ))}
                     </div>
                   </div>
-                  <div className="mb-3 w-6/12">
+                  <div className="hidden sm:block mb-3 w-6/12">
                     <div className="mx-2"></div>
                   </div>
-                  <div className="mb-3 w-6/12">
+                  <div className="mb-3 w-full sm:w-6/12">
                     <div className="mx-2">
                       <input
                         className="border rounded p-2 w-full"
@@ -370,7 +382,7 @@ const ReservationForm = () => {
                       />
                     </div>
                   </div>
-                  <div className="mb-3 w-6/12">
+                  <div className="mb-3 w-full sm:w-6/12">
                     <div className="mx-2">
                       <input
                         className="border rounded p-2 w-full"
@@ -383,7 +395,7 @@ const ReservationForm = () => {
                       />
                     </div>
                   </div>
-                  <div className="mb-3 w-6/12">
+                  <div className="mb-3 w-full sm:w-6/12">
                     <div className="mx-2">
                       <input
                         className="border rounded p-2 w-full"
@@ -396,7 +408,7 @@ const ReservationForm = () => {
                       />
                     </div>
                   </div>
-                  <div className="mb-3 w-6/12">
+                  <div className="mb-3 w-full sm:w-6/12">
                     <div className="mx-2">
                       <input
                         className="border rounded p-2 w-full"
@@ -453,3 +465,5 @@ const ReservationForm = () => {
 };
 
 export default ReservationForm;
+
+34606970757;
