@@ -1,26 +1,26 @@
-"use server";
+'use server';
 
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
 
 const CustomerReservationEmail = async (reservation: Reserva) => {
-	if (!reservation?.usuario?.email) {
-		return;
-	}
-	try {
-		const transporter = nodemailer.createTransport({
-			service: process.env.NEXT_PUBLIC__NODEMAILER_service,
-			auth: {
-				user: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
-				pass: process.env.NEXT_PUBLIC__NODEMAILER_server_password,
-			},
-		});
+  if (!reservation?.usuario?.email) {
+    return;
+  }
+  try {
+    const transporter = nodemailer.createTransport({
+      service: process.env.NEXT_PUBLIC__NODEMAILER_service,
+      auth: {
+        user: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
+        pass: process.env.NEXT_PUBLIC__NODEMAILER_server_password
+      }
+    });
 
-		const mailOptions = {
-			from: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
-			to: reservation.usuario.email,
-			subject:
-				"Confirmación de tu reserva en el Restaurante Mexicano El Pastor 🇲🇽🌮",
-			html: `
+    const mailOptions = {
+      from: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
+      to: reservation.usuario.email,
+      subject:
+        'Confirmación de tu reserva en el Restaurante Mexicano El Pastor 🇲🇽🌮',
+      html: `
         <div>
 		      <table role="presentation" border="0" cellpadding="16" cellspacing="0" width="100%" style="background: #ffffff" lang="es">
             <tbody>
@@ -57,6 +57,7 @@ const CustomerReservationEmail = async (reservation: Reserva) => {
                                             Hola ${reservation.usuario.nombre},<br>
                                             Gracias por reservar en nuestro restaurante. Estamos contentos de informarte de que tu reserva está confirmada.<br>
                                             Por favor consulta los detalles a continuación. Te esperamos en nuestro restaurante!<br><br>
+											Por favor, confirma tu reserva al ‪606 97 07 57 o 919 35 43 69<br><br>
                                             No dudes en preguntarlos por nuestros platos y opción a eventos para tus reuniones familiares!
                                           </span>
                                         </td>
@@ -112,7 +113,7 @@ const CustomerReservationEmail = async (reservation: Reserva) => {
                                                           <span style="font-size:14px">Personas</span>
                                                           <br> 
                                                           <strong style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif">
-                                                            <span style="font-size:16px">${reservation.people} ${reservation.people == "1" ? "persona" : "personas"}</span>
+                                                            <span style="font-size:16px">${reservation.people} ${reservation.people == '1' ? 'persona' : 'personas'}</span>
                                                           </strong>
                                                         </td> 
                                                       </tr> 
@@ -126,7 +127,7 @@ const CustomerReservationEmail = async (reservation: Reserva) => {
                                       </tr>
                                       <tr> 
                                       <td style="line-height:24px;font-family:'RalewayX',verdana,sans-serif;font-size:16px">
-                                      <span>Si cambias de idea, puedes hacer clic en el siguiente botón para cancelarla:</span>
+                                      	<span>Si cambias de idea, puedes hacer clic en el siguiente botón para cancelarla:</span>
                                       </td>
                                     </tr>
                                     <tr> 
@@ -173,16 +174,16 @@ const CustomerReservationEmail = async (reservation: Reserva) => {
             </tbody>
           </table>
 	      </div>
-      `,
-		};
+      `
+    };
 
-		await transporter.sendMail(mailOptions);
-	} catch (error) {
-		console.info(
-			"app/reservas/[id]/exito/page.tsx/CustomerReservationEmail()",
-			error
-		);
-	}
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.info(
+      'app/reservas/[id]/exito/page.tsx/CustomerReservationEmail()',
+      error
+    );
+  }
 };
 
 export default CustomerReservationEmail;
