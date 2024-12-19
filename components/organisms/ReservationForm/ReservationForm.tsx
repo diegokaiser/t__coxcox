@@ -310,7 +310,7 @@ const ReservationForm = () => {
                     key={hour}
                     className={`w-3/12 ${availableHours.includes(hour) ? 'cursor-pointer' : 'cursor-not-allowed'}`}
                     onClick={() =>
-                      availableHours.includes(hour) && handleSelectHour('13:30')
+                      availableHours.includes(hour) && handleSelectHour(hour)
                     }
                     disabled={!availableHours.includes(hour)}
                   >
