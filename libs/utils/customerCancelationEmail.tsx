@@ -1,26 +1,29 @@
-"use server";
+'use server';
 
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
+import formatedDate from './formatDate';
 
 const CustomerReservationEmail = async (reservation: Reserva) => {
-	if (!reservation?.usuario?.email) {
-		return;
-	}
-	try {
-		const transporter = nodemailer.createTransport({
-			service: process.env.NEXT_PUBLIC__NODEMAILER_service,
-			auth: {
-				user: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
-				pass: process.env.NEXT_PUBLIC__NODEMAILER_server_password,
-			},
-		});
+  if (!reservation?.usuario?.email) {
+    return;
+  }
+  try {
+    const transporter = nodemailer.createTransport({
+      service: process.env.NEXT_PUBLIC__NODEMAILER_service,
+      auth: {
+        user: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
+        pass: process.env.NEXT_PUBLIC__NODEMAILER_server_password
+      }
+    });
 
-		const mailOptions = {
-			from: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
-			to: reservation.usuario.email,
-			subject:
-				"Cancelación de tu reserva en el Restaurante Mexicano El Pastor 🇲🇽🌮",
-			html: `
+    const formattedDate = formatedDate(reservation.fecha, 'es');
+
+    const mailOptions = {
+      from: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
+      to: reservation.usuario.email,
+      subject:
+        'Cancelación de tu reserva en el Restaurante Mexicano El Pastor 🇲🇽🌮',
+      html: `
         <div>
           <table role="presentation" border="0" cellpadding="16" cellspacing="0" width="100%" style="background: #ffffff" lang="es">
             <tbody>
@@ -98,7 +101,7 @@ const CustomerReservationEmail = async (reservation: Reserva) => {
                                                       <tr> 
                                                         <td width="33%" style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif"> 
                                                           <span style="font-size:14px">Fecha</span><br> <strong style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif">
-                                                            <span style="font-size:16px">${reservation.fecha}</span></strong> 
+                                                            <span style="font-size:16px">${formattedDate}</span></strong> 
                                                         </td> 
                                                         <td width="34%" style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif"> 
                                                           <span style="font-size:14px">Hora</span>
@@ -111,7 +114,7 @@ const CustomerReservationEmail = async (reservation: Reserva) => {
                                                           <span style="font-size:14px">Personas</span>
                                                           <br> 
                                                           <strong style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif">
-                                                            <span style="font-size:16px">${reservation.people} ${reservation.people == "1" ? "persona" : "personas"}</span>
+                                                            <span style="font-size:16px">${reservation.people} ${reservation.people == '1' ? 'persona' : 'personas'}</span>
                                                           </strong>
                                                         </td> 
                                                       </tr> 
@@ -149,16 +152,16 @@ const CustomerReservationEmail = async (reservation: Reserva) => {
             </tbody>
           </table>
         </div>
-      `,
-		};
+      `
+    };
 
-		await transporter.sendMail(mailOptions);
-	} catch (error) {
-		console.info(
-			"app/reservas/[id]/exito/page.tsx/CustomerReservationEmail()",
-			error
-		);
-	}
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.info(
+      'app/reservas/[id]/exito/page.tsx/CustomerReservationEmail()',
+      error
+    );
+  }
 };
 
 export default CustomerReservationEmail;

@@ -1,6 +1,7 @@
 'use server';
 
 import nodemailer from 'nodemailer';
+import formatedDate from './formatDate';
 
 const CustomerReservationEmail = async (reservation: Reserva) => {
   if (!reservation?.usuario?.email) {
@@ -14,6 +15,8 @@ const CustomerReservationEmail = async (reservation: Reserva) => {
         pass: process.env.NEXT_PUBLIC__NODEMAILER_server_password
       }
     });
+
+    const formattedDate = formatedDate(reservation.fecha, 'es');
 
     const mailOptions = {
       from: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
@@ -46,7 +49,7 @@ const CustomerReservationEmail = async (reservation: Reserva) => {
                                         <td><span> Hola ${reservation.usuario.nombre},<br>
                                           Gracias por reservar en nuestro restaurante. Estamos contentos de informarte que hemos recbido tu reserva.<br>
                                           <br>
-                                          Por favor no olvides confirmar tu reserva al ‪606 97 07 57 o 919 35 43 69<br>
+                                          Por favor no olvides confirmar tu reserva al 606 97 07 57 o 919 35 43 69<br>
                                           <br>
                                           Consulta los detalles a continuación. Te esperamos en nuestro restaurante!<br>
                                           <br>
@@ -77,7 +80,7 @@ const CustomerReservationEmail = async (reservation: Reserva) => {
                                                     <tbody>
                                                       <tr>
                                                         <td width="33%" style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif"><span style="font-size:14px">Fecha</span><br>
-                                                          <strong style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif"> <span style="font-size:16px">${reservation.fecha}</span></strong></td>
+                                                          <strong style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif"> <span style="font-size:16px">${formattedDate}</span></strong></td>
                                                         <td width="34%" style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif"><span style="font-size:14px">Hora</span> <br>
                                                           <strong style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif"> <span style="font-size:16px">${reservation.hora}</span> </strong></td>
                                                         <td width="33%" style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif"><span style="font-size:14px">Personas</span> <br>
