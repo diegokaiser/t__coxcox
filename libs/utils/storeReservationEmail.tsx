@@ -1,25 +1,28 @@
-"use server";
+'use server';
 
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
+import formatedDate from './formatDate';
 
 const StoreReservationEmail = async (reservation: Reserva) => {
-	if (!reservation?.usuario?.email) {
-		return;
-	}
-	try {
-		const transporter = nodemailer.createTransport({
-			service: process.env.NEXT_PUBLIC__NODEMAILER_service,
-			auth: {
-				user: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
-				pass: process.env.NEXT_PUBLIC__NODEMAILER_server_password,
-			},
-		});
+  if (!reservation?.usuario?.email) {
+    return;
+  }
+  try {
+    const transporter = nodemailer.createTransport({
+      service: process.env.NEXT_PUBLIC__NODEMAILER_service,
+      auth: {
+        user: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
+        pass: process.env.NEXT_PUBLIC__NODEMAILER_server_password
+      }
+    });
 
-		const mailOptions = {
-			from: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
-			to: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
-			subject: "Nueva reserva! 😉",
-			html: `
+    const formattedDate = formatedDate(reservation.fecha, 'es');
+
+    const mailOptions = {
+      from: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
+      to: process.env.NEXT_PUBLIC__NODEMAILER_server_username,
+      subject: 'Nueva reserva! 😉',
+      html: `
         <div>
           <table role="presentation" border="0" cellpadding="16" cellspacing="0" width="100%" style="background: #ffffff" lang="es">
             <tbody>
@@ -71,7 +74,7 @@ const StoreReservationEmail = async (reservation: Reserva) => {
                                                       <tr> 
                                                         <td width="50%" style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif"> 
                                                           <span style="font-size:14px">Fecha</span><br> <strong style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif">
-                                                            <span style="font-size:16px">${reservation.fecha}</span></strong> 
+                                                            <span style="font-size:16px">${formattedDate}</span></strong> 
                                                         </td> 
                                                         <td width="50%" style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif"> 
                                                           <span style="font-size:14px">Hora</span>
@@ -90,7 +93,7 @@ const StoreReservationEmail = async (reservation: Reserva) => {
                                                           <span style="font-size:14px">Personas</span>
                                                           <br> 
                                                           <strong style="font-size:16px;line-height:24px;font-family:'RalewayX',verdana,sans-serif">
-                                                            <span style="font-size:16px">${reservation.people} ${reservation.people == "1" ? "persona" : "personas"}</span>
+                                                            <span style="font-size:16px">${reservation.people} ${reservation.people == '1' ? 'persona' : 'personas'}</span>
                                                           </strong>
                                                         </td> 
                                                       </tr> 
@@ -117,7 +120,7 @@ const StoreReservationEmail = async (reservation: Reserva) => {
                                       </tr>
                                       <tr> 
                                       <td style="line-height:24px;font-family:'RalewayX',verdana,sans-serif;font-size:16px">
-                                      <span>Ten en cuenta que ${reservation.usuario.nombre} ${reservation.usuario.mkt ? "sí" : "no"} quiere ser incluido en la lista de difusiones</span>
+                                      <span>Ten en cuenta que ${reservation.usuario.nombre} ${reservation.usuario.mkt ? 'sí' : 'no'} quiere ser incluido en la lista de difusiones</span>
                                       </td>
                                     </tr>
                                     <tr> 
@@ -141,16 +144,16 @@ const StoreReservationEmail = async (reservation: Reserva) => {
             </tbody>
           </table>
         </div>
-      `,
-		};
+      `
+    };
 
-		await transporter.sendMail(mailOptions);
-	} catch (error) {
-		console.info(
-			"app/reservas/[id]/exito/page.tsx/StoreReservationEmail()",
-			error
-		);
-	}
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.info(
+      'app/reservas/[id]/exito/page.tsx/StoreReservationEmail()',
+      error
+    );
+  }
 };
 
 export default StoreReservationEmail;

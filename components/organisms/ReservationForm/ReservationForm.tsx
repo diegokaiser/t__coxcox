@@ -84,7 +84,7 @@ const ReservationForm = () => {
   const minDate = new Date();
 
   const isValidName = formData.name.trim().length >= 3;
-  const isValidLastname = formData.lastname.trim().length >= 5;
+  const isValidLastname = formData.lastname.trim().length >= 3;
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
   const isValidPhone = /^[0-9]{1,9}$/.test(formData.phone.trim());
 
@@ -372,7 +372,7 @@ const ReservationForm = () => {
                   <div className="mb-3 w-full sm:w-6/12">
                     <div className="mx-2">
                       <input
-                        className="border rounded p-2 w-full"
+                        className={`border rounded p-2 w-full`}
                         type="text"
                         placeholder="Introduce tu nombre *"
                         value={formData.name}
@@ -385,7 +385,7 @@ const ReservationForm = () => {
                   <div className="mb-3 w-full sm:w-6/12">
                     <div className="mx-2">
                       <input
-                        className="border rounded p-2 w-full"
+                        className={`border rounded p-2 w-full`}
                         type="text"
                         placeholder="Introduce tus apellidos *"
                         value={formData.lastname}
