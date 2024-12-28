@@ -16,6 +16,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/es';
 import apis from '@/libs/apis';
 import reservations from '@/libs/apis/reservations';
+import formatedDate from '@/libs/utils/formatDate';
 import { horasDelDia } from '@/constants';
 
 addLocale('es', {
@@ -224,7 +225,9 @@ const ReservationForm = () => {
                 {idx === 1 && (
                   <>
                     <CalendarDots size={28} />
-                    {date == undefined ? `Seleccionar` : `${date}`}
+                    {date == undefined
+                      ? `Seleccionar`
+                      : `${formatedDate(date, 'es')}`}
                   </>
                 )}
                 {idx === 2 && (
@@ -277,6 +280,30 @@ const ReservationForm = () => {
                   onClick={() => handleSelectPeople('6')}
                 >
                   <div className="border rounded m-2 p-3">6</div>
+                </button>
+                <button
+                  className="w-4/12 sm:w-3/12"
+                  onClick={() => handleSelectPeople('7')}
+                >
+                  <div className="border rounded m-2 p-3">7</div>
+                </button>
+                <button
+                  className="w-4/12 sm:w-3/12"
+                  onClick={() => handleSelectPeople('8')}
+                >
+                  <div className="border rounded m-2 p-3">8</div>
+                </button>
+                <button
+                  className="w-4/12 sm:w-3/12"
+                  onClick={() => handleSelectPeople('9')}
+                >
+                  <div className="border rounded m-2 p-3">9</div>
+                </button>
+                <button
+                  className="w-4/12 sm:w-3/12"
+                  onClick={() => handleSelectPeople('10')}
+                >
+                  <div className="border rounded m-2 p-3">10</div>
                 </button>
               </div>
               <div className="flex flex-col sm:flex-row sm:flex-wrap mb-4">
