@@ -330,6 +330,7 @@ const ReservationForm = () => {
                     inline
                     minDate={minDate}
                     value={date ? new Date(date) : null}
+                    disabledDays={[1]}
                     onChange={(e) =>
                       handleSelectDate(e.value as Nullable<Date>)
                     }
