@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: 'Reserva tu mesa en El Pastor'
 };
 
+console.log(`v-210625-1239`);
+
 export default function RootLayout({
   children
 }: Readonly<{
